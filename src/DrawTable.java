@@ -1,9 +1,9 @@
 public class DrawTable {
 
 
-    public void printTable() {
-int  i=0;
-        char[][] table = {
+    DrawTable() {
+
+        char[][] mainArray = {
                 {'(', '1', ')', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '(', '2', ')', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '(', '3', ')', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -25,25 +25,57 @@ int  i=0;
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}};
 
-        for (char[] row : table) {
+        for (char[] row : mainArray) {
             for (char c : row) {
-                System.out.print(c);
-            }
-            System.out.println();
-        }
+                System.out.print(c); }
+            System.out.println(); }
         System.out.println();
+
+
     }
-    public void printTable1(int part) {
 
 
-//        for (char[] row : table) {
-//            for (char c : row) {
-//                System.out.print(c);
-//            }
-//            System.out.println();
-//        }
+    DrawTable(char Player) {
+
+        char[][] oArray = {
+                {' ', '#', '#', '#', '#', '#', ' '},
+                {'#', '#', ' ', ' ', ' ', '#', '#'},
+                {'#', '#', ' ', ' ', ' ', '#', '#'},
+                {'#', '#', ' ', ' ', ' ', '#', '#'},
+                {' ', '#', '#', '#', '#', '#', ' '}};
+
+        char[][] xArray = {
+                {'#', '#', ' ', ' ', ' ', '#', '#'},
+                {' ', '#', '#', ' ', '#', '#', ' '},
+                {' ', ' ', '#', '#', '#', ' ', ' '},
+                {' ', '#', '#', ' ', '#', '#', ' '},
+                {'#', '#', ' ', ' ', ' ', '#', '#'}};
+
+if ( Player == 'x'){
+    for (char[] row : xArray) {
+        for (char c : row) {
+            System.out.print(c); }
+        System.out.println(); }
+        System.out.println();
+}
+
+else if ( Player == 'o'){
+
+        for (char[] row : oArray) {
+            for (char c : row) {
+                System.out.print(c); }
+            System.out.println(); }
+            System.out.println();
+      }
+
+
     }
 }
+
+
+
+
+
 
 
 

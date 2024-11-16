@@ -1,6 +1,8 @@
 import java.util.Objects;
 
-public class ChoosePart {public void  choose(){
+public class ChoosePart {
+
+    ChoosePart(){
 
     //System.out.println(PlayerX.read());
 String num= PlayerX.read();
