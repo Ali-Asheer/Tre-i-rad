@@ -51,6 +51,7 @@ public class Game {
 
                 if (isArrayFull()) {
                     getYesNo(p1Name, p2Name);
+                    break;
                 }
 
                 if (Objects.equals(p2Name, "Computer")) {
@@ -67,6 +68,7 @@ public class Game {
 
                 if (isArrayFull()) {
                     getYesNo(p1Name, p2Name);
+                    break;
                 }
 
             }
@@ -74,7 +76,7 @@ public class Game {
             break;
         }
 
-        System.out.println("*********** GAME OVER **********");
+
     }
 
     // Location of symbol array on a main array
@@ -218,11 +220,14 @@ public class Game {
 
         do {
             System.out.print("Du you want to continue (Y/N) : ");
+            System.out.println();
             String input = scanner.nextLine();
             if (input.toLowerCase().startsWith("j") || input.toLowerCase().startsWith("y")) {
                 gameStart(p1, p2);
                 yesNo = false;                  // if select Yes it will continue.
             } else if (input.toLowerCase().startsWith("n")) {
+
+                System.out.println("************* GAME OVER *************");
                 System.out.println("------- Thank you and goodbye -------");
                 yesNo = false;
 
@@ -303,6 +308,7 @@ public class Game {
                     p2Score++;
                 }
                 System.out.println("**** " + p + " win this round, congratulations. ****");
+                System.out.println("( " + p1 + "ّs Score : " + p1Score + "  )  VS  ( " + p2 + "ّs Score : " + p2Score + " )");
                 System.out.println("---------------------------------------------------------");
                 return true;
             }
