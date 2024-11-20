@@ -1,14 +1,19 @@
 import java.util.InputMismatchException;
 import java.util.Objects;
+import java.util.Random;
 import java.util.Scanner;
 
 
 
 public class Game {
+
+    int[] partSelect = new int[9];
+    private static final int EMPTY = 0;
+    private final int USER1 = 1;
+    private final int USER2 = 2;
+    private final int COMPUTER = 2;
     private int user1Score = 0;
     private int user2Score = 0;
-    int[] partSelect = new int[9];
-
 
 
 
@@ -37,37 +42,30 @@ public class Game {
         boolean running = false;
 
         while (!running) {
-            while (!isBoardFull()) {
-
-
+            while (!isArrayFull()) {
                 twoPlayersGame(askNumber2(p1, USER1), mainArr, mt.xArray());
                 if (isWon(USER1, p1, p1, p2)) {
                     getYesNo(p1, p2);
-                    running = true;
+                    running = true; }
 
-                }
-
-                if (isBoardFull()) {
+                if (isArrayFull()) {
                     System.out.println("********************************");
                     System.out.println("**( The game ended in a draw )**");
                     System.out.println("********************************");
                     System.out.println();
-                    getYesNo(p1, p2);
-                }
+                    getYesNo(p1, p2); }
 
                 if (Objects.equals(p2, "Computer")) {
                     twoPlayersGame(computerNum(), mainArr, mt.oArray());
                 } else {
-                    twoPlayersGame(askNumber2(p2, USER2), mainArr, mt.oArray());
-                }
+                    twoPlayersGame(askNumber2(p2, USER2), mainArr, mt.oArray()); }
 
                 if (isWon(USER2, p2, p1, p2)) {
                     getYesNo(p1, p2);
                     running = true;
-                    break;
-                }
+                    break;}
 
-                if (isBoardFull()) {
+                if (isArrayFull()) {
                     System.out.println("********************************");
                     System.out.println("**( The game ended in a draw )**");
                     System.out.println("********************************");
@@ -235,10 +233,79 @@ public int askNumber1(String playerName, int ask) {
         } while (yesNo);
 
     }
+
+    //  checking array with 0 contain
     public void makeEmptyArray() {
         for (int i = 0; i < 9; i++) {
             partSelect[i] = 0;
         }
+    }
+
+//  check if all cells are full
+    public boolean isArrayFull() {
+        for (int i = 0; i < 9; i++) {
+            if (partSelect[i] == EMPTY) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // Select a number 1-9 and check the array cell if it empties.
+    public int askNumber2(String p, int USER) {
+        int checkPlace = askNumber1(p, 9);
+        while (!(checkPart(partSelect, checkPlace, USER))) {
+            checkPlace = askNumber1(p, 9);
+        }
+        return checkPlace;
+    }
+
+    // check the array cell if it empty to put users symbol
+
+    public boolean checkPart(int[] partSelect, int i, int user) {
+        if (partSelect[i - 1] == EMPTY) {
+            partSelect[i - 1] = user;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    // Generate a random number as a computer choice
+    public int computerNum() {
+        Random random = new Random();
+        int num;
+        num = random.nextInt(8) + 1;
+        while (!(checkPart(partSelect, num, COMPUTER))) {
+            num = random.nextInt(8) + 1;
+        }
+        return num;
+    }
+
+    // check the cells if it did the conditions to win and add the scores and choose the winner
+    public boolean isWon(int player, String p, String p1, String p2) {
+
+        for (int i = 0; i < 9; i++) {
+            if ((partSelect[0] == player && partSelect[1] == player && partSelect[2] == player)
+                    || (partSelect[3] == player && partSelect[4] == player && partSelect[5] == player)
+                    || (partSelect[6] == player && partSelect[7] == player && partSelect[8] == player)
+                    || (partSelect[0] == player && partSelect[3] == player && partSelect[6] == player)
+                    || (partSelect[1] == player && partSelect[4] == player && partSelect[7] == player)
+                    || (partSelect[2] == player && partSelect[5] == player && partSelect[8] == player)
+                    || (partSelect[0] == player && partSelect[4] == player && partSelect[8] == player)
+                    || (partSelect[6] == player && partSelect[4] == player && partSelect[2] == player)) {
+                if (player == 1) {
+                    user1Score++;
+                }
+                if (player == 2) {
+                    user2Score++;
+                }
+                System.out.println("**** " + p + " win this round, congratulations. ****");
+                System.out.println("---------------------------------------------------------");
+                return true;
+            }
+        }
+        System.out.println("( " + p1 + "ّs Score : " + user1Score + "  )  VS  ( " + p2 + "ّs Score : " + user2Score + " )");
+        return false;
     }
 
 
