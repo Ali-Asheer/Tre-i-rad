@@ -17,7 +17,6 @@ public class Game {
     }
 }
 
-
 // First page menu
 
 public void PlayersMenuText() {
