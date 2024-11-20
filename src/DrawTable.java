@@ -1,8 +1,6 @@
 public class DrawTable {
 
-
-    DrawTable() {
-
+    public char[][] mainArray() {
         char[][] mainArray = {
                 {'(', '1', ')', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '(', '2', ')', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', '(', '3', ')', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
@@ -25,18 +23,10 @@ public class DrawTable {
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '},
                 {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '}};
 
-        for (char[] row : mainArray) {
-            for (char c : row) {
-                System.out.print(c); }
-            System.out.println(); }
-        System.out.println();
-
-
+        return mainArray;
     }
 
-
-    DrawTable(char Player) {
-
+    public char[][] oArray() {
         char[][] oArray = {
                 {' ', '#', '#', '#', '#', '#', ' '},
                 {'#', '#', ' ', ' ', ' ', '#', '#'},
@@ -44,33 +34,24 @@ public class DrawTable {
                 {'#', '#', ' ', ' ', ' ', '#', '#'},
                 {' ', '#', '#', '#', '#', '#', ' '}};
 
+
+        return oArray;
+    }
+
+    public char[][] xArray() {
         char[][] xArray = {
                 {'#', '#', ' ', ' ', ' ', '#', '#'},
                 {' ', '#', '#', ' ', '#', '#', ' '},
                 {' ', ' ', '#', '#', '#', ' ', ' '},
                 {' ', '#', '#', ' ', '#', '#', ' '},
                 {'#', '#', ' ', ' ', ' ', '#', '#'}};
-
-if ( Player == 'x'){
-    for (char[] row : xArray) {
-        for (char c : row) {
-            System.out.print(c); }
-        System.out.println(); }
-        System.out.println();
-}
-
-else if ( Player == 'o'){
-
-        for (char[] row : oArray) {
-            for (char c : row) {
-                System.out.print(c); }
-            System.out.println(); }
-            System.out.println();
-      }
-
-
+        return xArray;
     }
 }
+
+
+
+
 
 
 

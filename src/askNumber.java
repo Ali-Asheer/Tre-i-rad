@@ -3,14 +3,15 @@ import java.util.InputMismatchException;
 
 public class askNumber {
 
-    public int askNumber1(int ask) {
+    public int askNumber1(String playerName,int ask) {
         boolean error = false;
         int x = 0;
+        if (playerName != "") playerName = playerName + ". ";
         do {
             try {
                 do {
                     Scanner sc = new Scanner(System.in);
-                    System.out.print("Choose (1-" + ask + ") : ");// enter here.
+                    System.out.print(playerName + "Enter a number between (1-" + ask + ") : ");// enter here.
                     x = sc.nextInt();
                     error = false;
                 }
