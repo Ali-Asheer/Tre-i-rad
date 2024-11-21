@@ -8,12 +8,8 @@ public class Game {
 
     int[] partSelect = new int[9];
     private static final int EMPTY = 0;
-    private final int USER1 = 1;
-    private final int USER2 = 2;
-    private final int COMPUTER = 2;
     private int p1Score = 0;
     private int p2Score = 0;
-
 
     //  Start of game
 
@@ -24,7 +20,6 @@ public class Game {
         TwoPlayersMenu(gameSelect);                                                   // To input menu to input players names
 
     }
-
 
     // Main game start
 
@@ -39,110 +34,103 @@ public class Game {
         printArray(mainArr);            // Draw a main board
         boolean running = false;
 
-        while (!running) {
+
             while (!isArrayFull()) {          // running the game until the board become full
 
-                twoPlayersGame(askNumber2(p1Name, USER1), mainArr, xArr);
+                int USER1 = 1;
+                symbolLocate(askNumber2(p1Name, USER1), mainArr, xArr);
                 if (isWon(USER1, p1Name, p1Name, p2Name)) {
                     getYesNo(p1Name, p2Name);
-                    running = true;
                     break;
                 }
-
                 if (isArrayFull()) {
                     getYesNo(p1Name, p2Name);
                     break;
                 }
-
+                int USER2 = 2;
                 if (Objects.equals(p2Name, "Computer")) {
-                    twoPlayersGame(computerNum(), mainArr, oArr);
+                    symbolLocate(computerNum(), mainArr, oArr);
                 } else {
-                    twoPlayersGame(askNumber2(p2Name, USER2), mainArr, oArr);
+                    symbolLocate(askNumber2(p2Name, USER2), mainArr, oArr);
                 }
-
                 if (isWon(USER2, p2Name, p1Name, p2Name)) {
                     getYesNo(p1Name, p2Name);
-                    running = true;
                     break;
                 }
-
                 if (isArrayFull()) {
                     getYesNo(p1Name, p2Name);
                     break;
                 }
 
             }
-
-            break;
-        }
 
 
     }
 
     // Location of symbol array on a main array
 
-    public void twoPlayersGame(int s, char[][] mt, char[][] ms) {
+    public void symbolLocate(int s, char[][] mainArr, char[][] subArr) {
         int x;
         int y;
         switch (s) {
             case 1:
                 x = 1;
                 y = 2;
-                printSymbol(mt, ms, x, y);
+                printSymbol(mainArr, subArr, x, y);
                 break;
             case 2:
                 x = 1;
                 y = 14;
-                printSymbol(mt, ms, x, y);
+                printSymbol(mainArr, subArr, x, y);
                 break;
             case 3:
                 x = 1;
                 y = 26;
-                printSymbol(mt, ms, x, y);
+                printSymbol(mainArr, subArr, x, y);
                 break;
             case 4:
                 x = 8;
                 y = 2;
-                printSymbol(mt, ms, x, y);
+                printSymbol(mainArr, subArr, x, y);
                 break;
             case 5:
                 x = 8;
                 y = 14;
-                printSymbol(mt, ms, x, y);
+                printSymbol(mainArr, subArr, x, y);
                 break;
             case 6:
                 x = 8;
                 y = 26;
-                printSymbol(mt, ms, x, y);
+                printSymbol(mainArr, subArr, x, y);
                 break;
             case 7:
                 x = 15;
                 y = 2;
-                printSymbol(mt, ms, x, y);
+                printSymbol(mainArr, subArr, x, y);
                 break;
             case 8:
                 x = 15;
                 y = 14;
-                printSymbol(mt, ms, x, y);
+                printSymbol(mainArr, subArr, x, y);
                 break;
             case 9:
                 x = 15;
                 y = 26;
-                printSymbol(mt, ms, x, y);
+                printSymbol(mainArr, subArr, x, y);
                 break;
         }
     }
 
     // to put a symbol array at a main array
 
-    public void printSymbol(char[][] mainArray1, char[][] xArray1, int x, int y) {
+    public void printSymbol(char[][] mainArray, char[][] subArray, int x, int y) {
         for (int i = 0; i < 5; i++) {
             for (int j = 0; j < 7; j++) {
-                mainArray1[i + x][j + y] = xArray1[i][j];
+                mainArray[i + x][j + y] = subArray[i][j];
             }
             System.out.println();
         }
-        printArray(mainArray1);
+        printArray(mainArray);
     }
 
     // to print the main board
@@ -193,7 +181,7 @@ public class Game {
     public int askNumber1(String playerName, int ask) {
         boolean error = false;
         int x = 0;
-        if (playerName != "") playerName = playerName + ". ";
+        if (!Objects.equals(playerName, "")) playerName = playerName + ". ";
         do {
             try {
                 do {
@@ -251,9 +239,9 @@ public class Game {
                 return false;
             }
         }
-        System.out.println("********************************");
-        System.out.println("**( The game ended in a draw )**");
-        System.out.println("********************************");
+        System.out.println("**********************************");
+        System.out.println("**( This round ended in a draw )**");
+        System.out.println("**********************************");
         System.out.println();
         return true;
     }
@@ -283,6 +271,7 @@ public class Game {
         Random random = new Random();
         int num;
         num = random.nextInt(8) + 1;
+        int COMPUTER = 2;
         while (!(checkPart(partSelect, num, COMPUTER))) {
             num = random.nextInt(8) + 1;
         }
@@ -316,6 +305,5 @@ public class Game {
         System.out.println("( " + p1 + "ّs Score : " + p1Score + "  )  VS  ( " + p2 + "ّs Score : " + p2Score + " )");
         return false;
     }
-
 
 }
